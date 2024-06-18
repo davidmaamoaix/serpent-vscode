@@ -1,0 +1,25 @@
+{
+  "name": "serpent-vscode",
+  "displayName": "serpent-vscode",
+  "description": "Syntax highlighting (token-based) for Serpent language in VS Code.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "serpent",
+      "aliases": ["Serpent", "serpent"],
+      "extensions": [".srp"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "serpent",
+      "scopeName": "source.serpent",
+      "path": "./syntaxes/serpent.tmLanguage.json"
+    }]
+  }
+}
