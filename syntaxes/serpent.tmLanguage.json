@@ -1,32 +1,83 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Serpent",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.serpent",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.serpent",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.serpent",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.serpent"
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Serpent",
+    "patterns": [
+        {"include": "#string"},
+        {"include": "#comment_slash"},
+        {"include": "#comment_hash"},
+        {"include": "#keyword"},
+        {"include": "#number"},
+        {"include": "#symbol"},
+        {"include": "#literal"},
+        {"include": "#identifier"}
+    ],
+    "repository": {
+        "string": {
+            "name": "string.quoted.double.serpent",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [{
+                "name": "constant.character.escape.serpent",
+                "match": "\\\\."
+            }]
+        },
+        "comment_slash": {
+            "name": "comment.line.serpent",
+            "begin": "//", "end": "\n"
+        },
+        "comment_hash": {
+            "name": "comment.line.serpent",
+            "begin": "#", "end": "\n"
+        },
+        "keyword": {
+            "patterns": [
+                {
+                    "name": "keyword.control.serpent",
+                    "match": "\\b(if|elif|else|while|for|in|from|to|by|return)\\b"
+                },
+                {
+                    "name": "keyword.other.serpent",
+                    "match": "\\b(class|var|def|print|load|require)\\b"
+                },
+                {
+                    "name": "keyword.other.serpent",
+                    "match": "\\b(and|or|is|not|in)\\b"
+                }
+            ]
+        },
+        "symbol": {
+            "name": "string.quoted.single.serpent",
+            "begin": "'",
+            "end": "'",
+            "patterns": [{
+                "name": "constant.character.escape.serpent",
+                "match": "\\\\."
+            }]
+        },
+        "number": {
+            "name": "constant.numeric.serpent",
+            "match": "\\b(0|0[0-7]+|0[xX][0-9a-fA-F]+|[1-9][0-9]*(\\.[0-9]+)?([eE][0-9]+)?)\\b"
+        },
+        "literal": {
+            "name": "constant.language.serpent",
+            "match": "\\b(true|false|nil)\\b"
+        },
+        "identifier": {
+            "patterns": [
+                {
+                    "name": "keyword.other.serpent",
+                    "match": "\\b(array|dict|abs|int|float|pow|len|min|max|cos|sin|tan|exp|sqrt|rem|random|chr|hex|oct|hash|id|intern|isinstance|issubclass|open|ord|repr|round|str|type|flatten|strcat|subseq|isupper|islower|isalpha|isdigit|isalnum|toupper|tolower|find|exit)\\b"
+                },
+                {
+                    "name": "variable.serpent",
+                    "match": "\\b([_a-z][a-zA-Z0-9_]*)\\b"
+                },
+                {
+                    "name": "entity.name.class.serpent",
+                    "match": "\\b([A-Z][a-zA-Z0-9_]*)\\b"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.serpent"
 }
